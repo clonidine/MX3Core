@@ -1,0 +1,4 @@
+name: MX3Core
+version: '${project.version}'
+main: dev.migx3.core.Core
+author: lcly
