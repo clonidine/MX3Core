@@ -12,14 +12,12 @@ import dev.migx3.core.api.services.Service;
 import dev.migx3.core.api.services.impl.BanService;
 import dev.migx3.core.api.services.impl.RankService;
 import dev.migx3.core.api.services.impl.UserService;
-import dev.migx3.core.commands.InfoCommand;
-import dev.migx3.core.commands.LobbyCommand;
-import dev.migx3.core.commands.RankCommand;
-import dev.migx3.core.commands.ReportCommand;
+import dev.migx3.core.commands.*;
 import dev.migx3.core.listeners.ServerChatListener;
 import dev.migx3.core.listeners.ServerConnectListener;
 import dev.migx3.core.listeners.ServerSwitchListener;
 import dev.migx3.core.managers.ReportManager;
+import dev.migx3.core.managers.StaffChatManager;
 import dev.morphia.Datastore;
 import dev.morphia.Morphia;
 import lombok.Getter;
@@ -40,6 +38,7 @@ public final class Core extends Plugin {
     private Service<Rank> rankService;
 
     private ReportManager reportManager;
+    private StaffChatManager staffChatManager;
 
     @Override
     public void onLoad() {
@@ -87,6 +86,7 @@ public final class Core extends Plugin {
         new InfoCommand(this);
         new RankCommand(this);
         new ReportCommand(this);
+        new StaffChatCommand(this);
     }
 
     private void registerListeners() {
@@ -97,5 +97,6 @@ public final class Core extends Plugin {
 
     private void registerManagers() {
         reportManager = new ReportManager();
+        staffChatManager = new StaffChatManager();
     }
 }
