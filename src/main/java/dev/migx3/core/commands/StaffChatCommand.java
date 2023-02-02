@@ -60,17 +60,18 @@ public class StaffChatCommand extends Command {
 
             staffChatManager.addInChat(player.getUniqueId());
             player.sendMessage(new ComponentBuilder(ChatColor.GREEN + "You have enabled the Staff chat").create());
-        }
-
-        if (args.length > 0) {
-            String[] messageArray = Arrays.copyOfRange(args, 1, args.length);
+        } else {
+            String[] messageArray = Arrays.copyOfRange(args, 0, args.length);
             String message = String.join(" ", messageArray);
-            BaseComponent[] messageComponent = new ComponentBuilder(ChatColor.DARK_AQUA + "[StaffChat] " + rankColor + player.getName() + ": " + message).create();
+            String messageFormat = rankColor + rank.getDisplayName() + player.getName() + ChatColor.GRAY + ": " + ChatColor.WHITE + message;
+            BaseComponent[] messageComponent = new ComponentBuilder(ChatColor.DARK_AQUA + "[SC] " + messageFormat).create();
 
             for (UUID playerUUID : staffChatManager.getPlayersInStaffChat()) {
                 ProxiedPlayer proxiedPlayer = ProxyServer.getInstance().getPlayer(playerUUID);
                 proxiedPlayer.sendMessage(messageComponent);
             }
+
+            player.sendMessage(new ComponentBuilder("Message sent!").color(ChatColor.GREEN).create());
         }
     }
 }
