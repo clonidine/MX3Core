@@ -83,10 +83,10 @@ public final class Core extends Plugin {
 
     private void registerCommands() {
         new LobbyCommand(this);
-        new InfoCommand(this);
         new RankCommand(this);
         new ReportCommand(this);
         new StaffChatCommand(this);
+        new BanCommand(this);
     }
 
     private void registerListeners() {
